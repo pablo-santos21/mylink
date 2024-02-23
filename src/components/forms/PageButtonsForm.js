@@ -4,17 +4,7 @@ import { savePageButtons } from '@/actions/pageActions';
 import SubmitButton from '@/components/buttons/SubmitButton';
 import SectionBox from '@/components/layout/SectionBox';
 import { ReactSortable } from 'react-sortablejs';
-import {
-  faDiscord,
-  faFacebook,
-  faGithub,
-  faInstagram,
-  faTelegram,
-  faTiktok,
-  faWhatsapp,
-  faYoutube,
-  faLinkedinIn,
-} from '@fortawesome/free-brands-svg-icons';
+import { faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import {
   faEnvelope,
   faGripLines,
@@ -22,7 +12,6 @@ import {
   faPlus,
   faSave,
   faTrash,
-  faCartShopping,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
@@ -45,61 +34,13 @@ export const allButtons = [
     key: 'instagram',
     label: 'instagram',
     icon: faInstagram,
-    placeholder: 'https://instagram.com/profile',
-  },
-  {
-    key: 'facebook',
-    label: 'facebook',
-    icon: faFacebook,
-    placeholder: 'https://facebook.com/profile',
-  },
-  {
-    key: 'discord',
-    label: 'discord',
-    icon: faDiscord,
-    placeholder: '@profile',
-  },
-  {
-    key: 'tiktok',
-    label: 'tiktok',
-    icon: faTiktok,
-    placeholder: 'https://www.tiktok.com/@profile',
-  },
-  {
-    key: 'youtube',
-    label: 'youtube',
-    icon: faYoutube,
-    placeholder: 'https://www.youtube.com/@profile',
+    placeholder: 'perfil',
   },
   {
     key: 'whatsapp',
     label: 'whatsapp',
     icon: faWhatsapp,
-    placeholder: 'https://wa.me/55xx123456789',
-  },
-  {
-    key: 'github',
-    label: 'github',
-    icon: faGithub,
-    placeholder: 'https://github.com/profile',
-  },
-  {
-    key: 'telegram',
-    label: 'telegram',
-    icon: faTelegram,
-    placeholder: 'https://t.me/profile',
-  },
-  {
-    key: 'linkedin',
-    label: 'linkedin',
-    icon: faLinkedinIn,
-    placeholder: 'https://www.linkedin.com/in/profile',
-  },
-  {
-    key: 'loja',
-    label: 'loja',
-    icon: faCartShopping,
-    placeholder: 'https://sualoja.com.br',
+    placeholder: '11123456789',
   },
 ];
 
@@ -141,7 +82,7 @@ export default function PageButtonsForm({ user, page }) {
   return (
     <SectionBox>
       <form action={saveButtons}>
-        <h2 className="text-2xl font-bold mb-4">Botão de contato</h2>
+        <h2 className="text-2xl font-bold mb-4">Ícone de contato</h2>
         <ReactSortable
           handle=".handle"
           list={activeButtons}
