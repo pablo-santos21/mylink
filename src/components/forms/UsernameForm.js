@@ -19,9 +19,9 @@ export default function UsernameForm({ desiredUsername }) {
   return (
     <form action={handleSubmit}>
       <h1 className="text-4xl font-bold text-center mb-2">
-        Grab your username
+        Segure seu username
       </h1>
-      <p className="text-center mb-6 text-gray-500">Choose your username</p>
+      <p className="text-center mb-6 text-gray-500">Escolha seu username</p>
       <div className="max-w-xs mx-auto">
         <input
           name="username"
@@ -32,7 +32,7 @@ export default function UsernameForm({ desiredUsername }) {
         />
         {taken && <UsernameFormResult />}
         <SubmitButton>
-          <span>Claim your username</span>
+          <span>Pegar meu username</span>
           <RightIcon />
         </SubmitButton>
       </div>

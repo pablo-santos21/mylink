@@ -46,7 +46,7 @@ export default function HeroForm({ user }) {
         type="submit"
         className="bg-mainColor text-white py-4 px-6 whitespace-nowrap"
       >
-        Join for Free
+        Cadastre-se free
       </button>
     </form>
   );

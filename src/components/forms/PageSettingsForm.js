@@ -2,6 +2,7 @@
 import { savePageSettings } from '@/actions/pageActions';
 import SubmitButton from '@/components/buttons/SubmitButton';
 import RadioTogglers from '@/components/formItems/radioTogglers';
+import RadioTogglersBody from '@/components/formItems/radioTogglersBody';
 import SectionBox from '@/components/layout/SectionBox';
 import { upload } from '@/libs/upload';
 import {
@@ -20,6 +21,8 @@ export default function PageSettingsForm({ page, user }) {
   const [bgType, setBgType] = useState(page.bgType);
   const [bgColor, setBgColor] = useState(page.bgColor);
   const [bgImage, setBgImage] = useState(page.bgImage);
+  const [bgTypeBody, setbgTypeBody] = useState(page.bgTypeBody);
+  const [bgBodyColor, setBgBodyColor] = useState(page.bgColor);
   const [avatar, setAvatar] = useState(user?.image);
   async function saveBaseSettings(formData) {
     const result = await savePageSettings(formData);
@@ -73,7 +76,10 @@ export default function PageSettingsForm({ page, user }) {
                 </div>
               )}
               {bgType === 'image' && (
-                <div className="flex justify-center">
+                <div className="flex flex-col justify-center">
+                  <div className="flex justify-center pt-4">
+                    <p>1546 x 224 Pixels</p>
+                  </div>
                   <label className="bg-white shadow px-4 py-2 mt-2 flex gap-2">
                     <input type="hidden" name="bgImage" value={bgImage} />
                     <input
@@ -86,7 +92,7 @@ export default function PageSettingsForm({ page, user }) {
                         icon={faCloudArrowUp}
                         className="text-gray-700"
                       />
-                      <span>Change image</span>
+                      <span>Trocar imagem</span>
                     </div>
                   </label>
                 </div>
@@ -119,26 +125,48 @@ export default function PageSettingsForm({ page, user }) {
               <input type="hidden" name="avatar" value={avatar} />
             </div>
           </div>
+          <h2 className="text-2xl font-bold my-4">Cor do corpo da página</h2>
+          <div className="flex flex-col justify-center items-center">
+            <RadioTogglersBody
+              defaultValue={page.bgTypeBody}
+              options={[{ value: 'color', icon: faPalette, label: 'Color' }]}
+              onChange={(val) => setbgTypeBody(val)}
+            />
+            {bgTypeBody === 'color' && (
+              <div className="bg-gray-200 shadow text-gray-700 p-2 mt-2">
+                <div className="flex gap-2 justify-center">
+                  <span>Background color:</span>
+                  <input
+                    type="color"
+                    name="bgBodyColor"
+                    onChange={(ev) => setBgBodyColor(ev.target.value)}
+                    defaultValue={page.bgBodyColor}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+          <h2 className="text-2xl font-bold my-4">Informações</h2>
           <div className="p-0">
             <label className="input-label" htmlFor="nameIn">
-              Display name
+              Nome
             </label>
             <input
               type="text"
               id="nameIn"
               name="displayName"
               defaultValue={page.displayName}
-              placeholder="John Doe"
+              placeholder="Pablo Santos"
             />
             <label className="input-label" htmlFor="locationIn">
-              Location
+              Localização
             </label>
             <input
               type="text"
               id="locationIn"
               name="location"
               defaultValue={page.location}
-              placeholder="Somewhere in the world"
+              placeholder="Estado, Cidade, Pais ou endereço completo"
             />
             <label className="input-label" htmlFor="bioIn">
               Bio
@@ -147,12 +175,12 @@ export default function PageSettingsForm({ page, user }) {
               name="bio"
               defaultValue={page.bio}
               id="bioIn"
-              placeholder="Your bio goes here..."
+              placeholder="Escreva sua Bio aqui..."
             />
             <div className="max-w-[200px] mx-auto">
               <SubmitButton>
                 <FontAwesomeIcon icon={faSave} />
-                <span>Save</span>
+                <span>Salvar</span>
               </SubmitButton>
             </div>
           </div>

@@ -10,7 +10,7 @@ export default function LoginWithGoogle() {
       className="bg-white shadow text-center w-full py-4 flex gap-3 items-center justify-center"
     >
       <FontAwesomeIcon icon={faGoogle} className="h-6" />
-      <span>Sign In with Google</span>
+      <span>Entrar com Google</span>
     </button>
   );
 }
