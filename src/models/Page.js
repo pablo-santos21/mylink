@@ -13,6 +13,7 @@ const PageSchema = new Schema(
     bgTypeBody: { type: String, default: 'color' },
     bgBodyColor: { type: String, default: '#000' },
     bgBodyImage: { type: String, default: '' },
+    icon: { type: Object, default: {} },
     buttons: { type: Object, default: {} },
     links: { type: Object, default: [] },
   },

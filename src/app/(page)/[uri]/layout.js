@@ -5,7 +5,7 @@ import '../../globals.css';
 const lato = Lato({ subsets: ['latin'], weight: ['400', '700'] });
 
 export const metadata = {
-  title: 'Meu perfil',
+  title: 'My Links - Meu perfil',
   description: 'Links ',
 };
 

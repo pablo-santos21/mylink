@@ -68,3 +68,18 @@ export async function savePageLinks(links) {
     return false;
   }
 }
+
+export async function savePageIcon(formData) {
+  mongoose.connect(process.env.MONGO_URI);
+  const session = await getServerSession(authOptions);
+  if (session) {
+    const iconValues = {};
+    formData.forEach((value, key) => {
+      iconValues[key] = value;
+    });
+    const dataToUpdate = { icon: iconValues };
+    await Page.updateOne({ owner: session?.user?.email }, dataToUpdate);
+    return true;
+  }
+  return false;
+}
