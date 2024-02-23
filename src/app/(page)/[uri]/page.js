@@ -54,15 +54,24 @@ export default async function UserPage({ params }) {
   const user = await User.findOne({ email: page.owner });
   await Event.create({ uri: uri, page: uri, type: 'view' });
   return (
-    <div className="bg-blue-950 text-white min-h-screen">
+    <div
+      className="bg-blue-950 text-white min-h-screen"
+      style={
+        page.bgTypeBody === 'color'
+          ? { backgroundColor: page.bgBodyColor }
+          : { backgroundImage: `url(${page.bgBodyImage})` }
+      }
+    >
       <div
-        className="h-36 bg-gray-400 bg-cover bg-center"
+        className=" h-56 bg-gray-400 bg-cover bg-center"
         style={
           page.bgType === 'color'
             ? { backgroundColor: page.bgColor }
             : { backgroundImage: `url(${page.bgImage})` }
         }
       ></div>
+
+      {/* IMAGEM, NOME E DESCRIÇÃO DO CLIENTE */}
       <div className="aspect-square w-36 h-36 mx-auto relative -top-16 -mb-12">
         <Image
           className="rounded-full w-full h-full object-cover border-zinc-300 border-4"
@@ -80,6 +89,8 @@ export default async function UserPage({ params }) {
       <div className="max-w-xs mx-auto text-center my-2">
         <p>{page.bio}</p>
       </div>
+
+      {/* IMAGENS E LINKS DAS REDES SOCIAIS */}
       <div className="flex gap-2 justify-center mt-4 pb-4">
         {Object.keys(page.buttons).map((buttonKey) => (
           <Link
@@ -94,6 +105,8 @@ export default async function UserPage({ params }) {
           </Link>
         ))}
       </div>
+
+      {/* VOU DESCOBRIR */}
       <div className="max-w-2xl mx-auto grid md:grid-cols-2 gap-6 p-4 px-8">
         {page.links.map((link) => (
           <Link
@@ -109,6 +122,7 @@ export default async function UserPage({ params }) {
             className="bg-indigo-800 p-2 block flex"
             href={link.url}
           >
+            {/* IMAGEM DO LINK */}
             <div className="relative -left-4 overflow-hidden w-16">
               <div className="w-16 h-16 bg-blue-700 aspect-square relative flex items-center justify-center aspect-square">
                 {link.icon && (
@@ -125,6 +139,9 @@ export default async function UserPage({ params }) {
                 )}
               </div>
             </div>
+
+            {/* LINKS */}
+
             <div className="flex items-center justify-center shrink grow-0 overflow-hidden">
               <div>
                 <h3>{link.title}</h3>

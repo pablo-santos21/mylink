@@ -11,7 +11,7 @@ export default function SubmitButton({ children, className = '' }) {
         className
       }
     >
-      {pending && <span>Saving...</span>}
+      {pending && <span>Salvando...</span>}
       {!pending && children}
     </button>
   );

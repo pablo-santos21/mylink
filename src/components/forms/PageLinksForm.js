@@ -116,7 +116,7 @@ export default function PageLinksForm({ page, user }) {
                       className="border mt-2 p-2 flex items-center gap-1 text-gray-600 cursor-pointer mb-2 justify-center"
                     >
                       <FontAwesomeIcon icon={faCloudArrowUp} />
-                      <span>Change icon</span>
+                      <span>Trocar icone</span>
                     </label>
                     <button
                       onClick={() => removeLink(l.key)}
@@ -124,31 +124,31 @@ export default function PageLinksForm({ page, user }) {
                       className="w-full bg-gray-300 py-2 px-3 mb-2 h-full flex gap-2 items-center justify-center"
                     >
                       <FontAwesomeIcon icon={faTrash} />
-                      <span>Remove this link</span>
+                      <span>Remover esse link</span>
                     </button>
                   </div>
                 </div>
                 <div className="grow">
-                  <label className="input-label">Title:</label>
+                  <label className="input-label">Título:</label>
                   <input
                     value={l.title}
                     onChange={(ev) => handleLinkChange(l.key, 'title', ev)}
                     type="text"
-                    placeholder="title"
+                    placeholder="Título"
                   />
-                  <label className="input-label">Subtitle:</label>
+                  <label className="input-label">Subtitulo:</label>
                   <input
                     value={l.subtitle}
                     onChange={(ev) => handleLinkChange(l.key, 'subtitle', ev)}
                     type="text"
-                    placeholder="subtitle (optional)"
+                    placeholder="Descrição (opcional)"
                   />
                   <label className="input-label">URL:</label>
                   <input
                     value={l.url}
                     onChange={(ev) => handleLinkChange(l.key, 'url', ev)}
                     type="text"
-                    placeholder="url"
+                    placeholder="https://www.pablosantos.dev"
                   />
                 </div>
               </div>
@@ -158,7 +158,7 @@ export default function PageLinksForm({ page, user }) {
         <div className="border-t pt-4 mt-4">
           <SubmitButton className="max-w-xs mx-auto">
             <FontAwesomeIcon icon={faSave} />
-            <span>Save</span>
+            <span>Salvar</span>
           </SubmitButton>
         </div>
       </form>

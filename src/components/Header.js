@@ -16,22 +16,23 @@ export default async function Header() {
             <span className="font-bold">LinkList</span>
           </Link>
           <nav className="flex items-center gap-4 text-slate-500 text-sm">
-            <Link href={'/about'}>About</Link>
-            <Link href={'/pricing'}>Pricing</Link>
-            <Link href={'/contact'}>Contact</Link>
+            <Link href={'/about'}>Sobre</Link>
+            <Link href={'/pricing'}>Preços</Link>
+            <Link href={'/contact'}>Contato</Link>
+            <Link href={'/account'}>Configurar página</Link>
           </nav>
         </div>
         <nav className="flex items-center gap-4 text-sm text-slate-500">
           {!!session && (
             <>
-              <Link href={'/account'}>Hello, {session?.user?.name}</Link>
+              <Link href={'/account'}>olá , {session?.user?.name}</Link>
               <LogoutButton />
             </>
           )}
           {!session && (
             <>
               <Link href={'/login'}>Sign In</Link>
-              <Link href={'/login'}>Create Account</Link>
+              <Link href={'/login'}>Criar Conta</Link>
             </>
           )}
         </nav>

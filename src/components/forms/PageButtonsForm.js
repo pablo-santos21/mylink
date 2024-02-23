@@ -47,15 +47,60 @@ export const allButtons = [
     icon: faInstagram,
     placeholder: 'https://instagram.com/profile',
   },
-  { key: 'facebook', label: 'facebook', icon: faFacebook },
-  { key: 'discord', label: 'discord', icon: faDiscord },
-  { key: 'tiktok', label: 'tiktok', icon: faTiktok },
-  { key: 'youtube', label: 'youtube', icon: faYoutube },
-  { key: 'whatsapp', label: 'whatsapp', icon: faWhatsapp },
-  { key: 'github', label: 'github', icon: faGithub },
-  { key: 'telegram', label: 'telegram', icon: faTelegram },
-  { key: 'linkedin', label: 'linkedin', icon: faLinkedinIn },
-  { key: 'loja', label: 'loja', icon: faCartShopping },
+  {
+    key: 'facebook',
+    label: 'facebook',
+    icon: faFacebook,
+    placeholder: 'https://facebook.com/profile',
+  },
+  {
+    key: 'discord',
+    label: 'discord',
+    icon: faDiscord,
+    placeholder: '@profile',
+  },
+  {
+    key: 'tiktok',
+    label: 'tiktok',
+    icon: faTiktok,
+    placeholder: 'https://www.tiktok.com/@profile',
+  },
+  {
+    key: 'youtube',
+    label: 'youtube',
+    icon: faYoutube,
+    placeholder: 'https://www.youtube.com/@profile',
+  },
+  {
+    key: 'whatsapp',
+    label: 'whatsapp',
+    icon: faWhatsapp,
+    placeholder: 'https://wa.me/55xx123456789',
+  },
+  {
+    key: 'github',
+    label: 'github',
+    icon: faGithub,
+    placeholder: 'https://github.com/profile',
+  },
+  {
+    key: 'telegram',
+    label: 'telegram',
+    icon: faTelegram,
+    placeholder: 'https://t.me/profile',
+  },
+  {
+    key: 'linkedin',
+    label: 'linkedin',
+    icon: faLinkedinIn,
+    placeholder: 'https://www.linkedin.com/in/profile',
+  },
+  {
+    key: 'loja',
+    label: 'loja',
+    icon: faCartShopping,
+    placeholder: 'https://sualoja.com.br',
+  },
 ];
 
 function upperFirst(str) {
@@ -63,7 +108,10 @@ function upperFirst(str) {
 }
 
 export default function PageButtonsForm({ user, page }) {
-  const pageSavedButtonsKeys = Object.keys(page.buttons);
+  // const pageSavedButtonsKeys = Object.keys(page.buttons);
+  const pageSavedButtonsKeys =
+    page && page.buttons ? Object.keys(page.buttons) : [];
+
   const pageSavedButtonsInfo = pageSavedButtonsKeys.map((k) =>
     allButtons.find((b) => b.key === k),
   );
@@ -93,7 +141,7 @@ export default function PageButtonsForm({ user, page }) {
   return (
     <SectionBox>
       <form action={saveButtons}>
-        <h2 className="text-2xl font-bold mb-4">Buttons</h2>
+        <h2 className="text-2xl font-bold mb-4">Botão de contato</h2>
         <ReactSortable
           handle=".handle"
           list={activeButtons}
@@ -116,6 +164,7 @@ export default function PageButtonsForm({ user, page }) {
                   defaultValue={page.buttons[b.key]}
                   type="text"
                   style={{ marginBottom: '0' }}
+                  // onClick={() => console.log(page.buttons[b.key])}
                 />
                 <button
                   onClick={() => removeButton(b)}
@@ -145,7 +194,7 @@ export default function PageButtonsForm({ user, page }) {
         <div className="max-w-xs mx-auto mt-8">
           <SubmitButton>
             <FontAwesomeIcon icon={faSave} />
-            <span>Save</span>
+            <span>Salvar</span>
           </SubmitButton>
         </div>
       </form>
