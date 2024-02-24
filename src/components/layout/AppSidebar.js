@@ -22,7 +22,7 @@ export default function AppSidebar() {
           icon={faFileLines}
           className={'w-6 h-6'}
         />
-        <span className="">Minha página</span>
+        <span className="">Meu perfil</span>
       </Link>
       <Link
         href={'/analytics'}

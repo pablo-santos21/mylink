@@ -5,7 +5,6 @@ import SubmitButton from '@/components/buttons/SubmitButton';
 import SectionBox from '@/components/layout/SectionBox';
 import { ReactSortable } from 'react-sortablejs';
 import {
-  faDiscord,
   faFacebook,
   faGithub,
   faInstagram,
@@ -22,7 +21,7 @@ import {
   faPlus,
   faSave,
   faTrash,
-  faBuildingUn,
+  faBuilding,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
@@ -39,7 +38,7 @@ export const allIcons = [
     key: 'pix',
     label: 'Chave pix',
     icon: faPix,
-    placeholder: '+55 21 1234 12345',
+    placeholder: '12345678910',
   },
   {
     key: 'instagram',
@@ -92,7 +91,7 @@ export const allIcons = [
   {
     key: 'empresa',
     label: 'empresa',
-    icon: faBuildingUn,
+    icon: faBuilding,
     placeholder: 'https://suaempresa.com.br',
   },
 ];
@@ -111,9 +110,9 @@ export default function PageButtonsLinksForm({ user, page }) {
   );
   const [activeIcons, setActiveIcons] = useState(pageSavedIconsInfo);
 
-  function addButtonToProfile(button) {
-    setActiveIcons((prevButtons) => {
-      return [...prevButtons, button];
+  function addButtonToProfile(icon) {
+    setActiveIcons((previcones) => {
+      return [...previcones, icon];
     });
   }
 
@@ -123,12 +122,12 @@ export default function PageButtonsLinksForm({ user, page }) {
   }
 
   function removeButton({ key: keyToRemove }) {
-    setActiveIcons((prevButtons) => {
-      return prevButtons.filter((icon) => icon.key !== keyToRemove);
+    setActiveIcons((previcones) => {
+      return previcones.filter((icon) => icon.key !== keyToRemove);
     });
   }
 
-  const availableButtons = allIcons.filter(
+  const availableIcones = allIcons.filter(
     (b1) => !activeIcons.find((b2) => b1.key === b2.key),
   );
 
@@ -172,7 +171,7 @@ export default function PageButtonsLinksForm({ user, page }) {
           ))}
         </ReactSortable>
         <div className="flex flex-wrap gap-2 mt-4 border-y py-4">
-          {availableButtons.map((b) => (
+          {availableIcones.map((b) => (
             <button
               key={b.key}
               type="button"

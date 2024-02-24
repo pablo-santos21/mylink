@@ -6,12 +6,15 @@ import {
   faFacebook,
   faGithub,
   faInstagram,
+  faLinkedinIn,
+  faPix,
   faTelegram,
   faTiktok,
   faWhatsapp,
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 import {
+  faBuilding,
   faEnvelope,
   faLink,
   faLocationDot,
@@ -35,6 +38,9 @@ export const buttonsIcons = {
   whatsapp: faWhatsapp,
   github: faGithub,
   telegram: faTelegram,
+  pix: faPix,
+  empresa: faBuilding,
+  linkedin: faLinkedinIn,
 };
 const buttonLabels = {
   email: 'E-mail',
@@ -80,6 +86,10 @@ function buttonLink(key, value) {
   if (key === 'linkedin') {
     return 'https://www.linkedin.com/in/' + value;
   }
+  if (key === 'pix') {
+    // return navigator.clipboard.writeText(value);
+    return 'oi' + value;
+  }
   return value;
 }
 
@@ -98,6 +108,7 @@ export default async function UserPage({ params }) {
           : { backgroundImage: `url(${page.bgBodyImage})` }
       }
     >
+      {/* SELEÇÃO DE COR DO BANNER */}
       <div
         className=" h-56 bg-gray-400 bg-cover bg-center"
         style={

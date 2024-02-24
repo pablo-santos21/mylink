@@ -116,7 +116,7 @@ export default function PageLinksForm({ page, user }) {
                       className="border mt-2 p-2 flex items-center gap-1 text-gray-600 cursor-pointer mb-2 justify-center"
                     >
                       <FontAwesomeIcon icon={faCloudArrowUp} />
-                      <span>Trocar icone</span>
+                      <span>Trocar ícone</span>
                     </label>
                     <button
                       onClick={() => removeLink(l.key)}
