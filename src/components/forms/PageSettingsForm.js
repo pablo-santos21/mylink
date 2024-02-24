@@ -3,6 +3,8 @@ import { savePageSettings } from '@/actions/pageActions';
 import SubmitButton from '@/components/buttons/SubmitButton';
 import RadioTogglers from '@/components/formItems/radioTogglers';
 import RadioTogglersBody from '@/components/formItems/radioTogglersBody';
+import RadioTogglersTextDesc from '@/components/formItems/radioTogglersTextDesc';
+import RadioTogglersTextMenu from '@/components/formItems/radioTogglersTextMenu';
 import SectionBox from '@/components/layout/SectionBox';
 import { upload } from '@/libs/upload';
 import {
@@ -21,8 +23,17 @@ export default function PageSettingsForm({ page, user }) {
   const [bgType, setBgType] = useState(page.bgType);
   const [bgColor, setBgColor] = useState(page.bgColor);
   const [bgImage, setBgImage] = useState(page.bgImage);
-  const [bgTypeBody, setbgTypeBody] = useState(page.bgTypeBody);
-  const [bgBodyColor, setBgBodyColor] = useState(page.bgColor);
+  const [typeColor, setTypeColor] = useState(page.typeColor);
+  const [bgBodyColor, setBgBodyColor] = useState(page.bgBodyColor);
+  const [textDesColor, setTextDesColor] = useState(page.textDescColor);
+  const [textMenuColor, setTextMenuColor] = useState(page.textMenuColor);
+  const [bgMainLinkColor, setBgMainLinkColor] = useState(page.bgMainLinkColor);
+  const [bgSecLinkColor, setBgSecLinkColor] = useState(page.bgSecLinkColor);
+
+  const [textLinkColor, setTextLinkColor] = useState(page.textLinkColor);
+  const [textIconColor, setTextIconColor] = useState(page.textIconColor);
+  const [borderMenuColor, setBorderMenuColor] = useState(page.borderMenuColor);
+
   const [avatar, setAvatar] = useState(user?.image);
   async function saveBaseSettings(formData) {
     const result = await savePageSettings(formData);
@@ -125,26 +136,157 @@ export default function PageSettingsForm({ page, user }) {
               <input type="hidden" name="avatar" value={avatar} />
             </div>
           </div>
-          <h2 className="text-2xl font-bold my-4">Cor do corpo da página</h2>
-          <div className="flex flex-col justify-center items-center">
-            <RadioTogglersBody
-              defaultValue={page.bgTypeBody}
-              options={[{ value: 'color', icon: faPalette, label: 'Color' }]}
-              onChange={(val) => setbgTypeBody(val)}
-            />
-            {bgTypeBody === 'color' && (
-              <div className="bg-gray-200 shadow text-gray-700 p-2 mt-2">
-                <div className="flex gap-2 justify-center">
-                  <span>Background color:</span>
-                  <input
-                    type="color"
-                    name="bgBodyColor"
-                    onChange={(ev) => setBgBodyColor(ev.target.value)}
-                    defaultValue={page.bgBodyColor}
-                  />
+
+          {/* CONFIGURAÇÃO DA PÁGINA */}
+
+          <h2 className="text-2xl font-bold my-4 text-center">
+            Configurações da página
+          </h2>
+          <div className="grid lg:grid-cols-2 grid-cols-1 justify-center items-center gap-4">
+            {/* BACKGROUND COLOR */}
+            <div className=" border-4 border-zinc-300 shadow-lg rounded-lg p-2 bg-blue-600/30">
+              <h2 className="text-2xl font-bold my-4 text-center">
+                Background(cor de fundo)
+              </h2>
+              <h3 className="text-lg font-bold mx-2">Cor da página:</h3>
+              {/* <RadioTogglersBody
+                defaultValue={page.typeColor}
+                options={[{ value: 'color', icon: faPalette, label: 'Color' }]}
+                onChange={(val) => setTypeColor(val)}
+              /> */}
+              {typeColor === 'color' && (
+                <div className="bg-gray-200 shadow text-gray-700 p-2 mt-2">
+                  <div className="flex gap-2 justify-center">
+                    <span>Background color:</span>
+                    <input
+                      type="color"
+                      name="bgBodyColor"
+                      onChange={(ev) => setBgBodyColor(ev.target.value)}
+                      defaultValue={page.bgBodyColor}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+              <div className=" my-4 border-b-[1px] border-b-black"></div>
+              <h3 className="text-lg font-bold mx-2">Cor dos ícones:</h3>
+              {typeColor === 'color' && (
+                <div className="bg-gray-200 shadow text-gray-700 p-2 mt-2">
+                  <div className="flex gap-2 justify-center">
+                    <span>Background color:</span>
+                    <input
+                      type="color"
+                      name="textIconColor"
+                      onChange={(ev) => setTextIconColor(ev.target.value)}
+                      defaultValue={page.textIconColor}
+                    />
+                  </div>
+                </div>
+              )}
+              <div className=" my-4 border-b-[1px] border-b-black"></div>
+              <h3 className="text-lg font-bold mx-2">Cor Principal do Link:</h3>
+              {typeColor === 'color' && (
+                <div className="bg-gray-200 shadow text-gray-700 p-2 mt-2">
+                  <div className="flex gap-2 justify-center">
+                    <span>Background color:</span>
+                    <input
+                      type="color"
+                      name="bgMainLinkColor"
+                      onChange={(ev) => setBgMainLinkColor(ev.target.value)}
+                      defaultValue={page.bgMainLinkColor}
+                    />
+                  </div>
+                </div>
+              )}
+              <div className=" my-4 border-b-[1px] border-b-black"></div>
+              <h3 className="text-lg font-bold mx-2">
+                Cor Secundária do Link:
+              </h3>
+              {typeColor === 'color' && (
+                <div className="bg-gray-200 shadow text-gray-700 p-2 mt-2">
+                  <div className="flex gap-2 justify-center">
+                    <span>Background color:</span>
+                    <input
+                      type="color"
+                      name="bgSecLinkColor"
+                      onChange={(ev) => setBgSecLinkColor(ev.target.value)}
+                      defaultValue={page.bgSecLinkColor}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* TEXT COLOR */}
+
+            <div className=" border-4 border-zinc-300 shadow-lg rounded-lg p-2 bg-blue-600/30">
+              <h2 className="text-2xl font-bold my-4 text-center">
+                Cores dos textos
+              </h2>
+              {/* <RadioTogglersTextDesc
+                defaultValue={page.typeColor}
+                options={[{ value: 'color', icon: faPalette, label: 'Color' }]}
+                onChange={(val) => setTypeColor(val)}
+              /> */}
+              <h3 className="text-lg font-bold mx-2">Texto da descrição:</h3>
+              {typeColor === 'color' && (
+                <div className="bg-gray-200 shadow text-gray-700 p-2 mt-2">
+                  <div className="flex gap-2 justify-center">
+                    <span>Text color:</span>
+                    <input
+                      type="color"
+                      name="textDescColor"
+                      onChange={(ev) => setTextDesColor(ev.target.value)}
+                      defaultValue={page.textDescColor}
+                    />
+                  </div>
+                </div>
+              )}
+              <div className=" my-4 border-b-[1px] border-b-black"></div>
+              <h3 className="text-lg font-bold mx-2"> Texto dos Botões:</h3>
+              {typeColor === 'color' && (
+                <div className="bg-gray-200 shadow text-gray-700 p-2 mt-2">
+                  <div className="flex gap-2 justify-center">
+                    <span>Text color:</span>
+                    <input
+                      type="color"
+                      name="textMenuColor"
+                      onChange={(ev) => setTextMenuColor(ev.target.value)}
+                      defaultValue={page.textMenuColor}
+                    />
+                  </div>
+                </div>
+              )}
+              <div className=" my-4 border-b-[1px] border-b-black"></div>
+              <h3 className="text-lg font-bold mx-2"> Bordar dos Botões:</h3>
+              {typeColor === 'color' && (
+                <div className="bg-gray-200 shadow text-gray-700 p-2 mt-2">
+                  <div className="flex gap-2 justify-center">
+                    <span>Text color:</span>
+                    <input
+                      type="color"
+                      name="borderMenuColor"
+                      onChange={(ev) => setBorderMenuColor(ev.target.value)}
+                      defaultValue={page.borderMenuColor}
+                    />
+                  </div>
+                </div>
+              )}
+              <div className=" my-4 border-b-[1px] border-b-black"></div>
+              <h3 className="text-lg font-bold mx-2">Texto dos Link:</h3>
+              {typeColor === 'color' && (
+                <div className="bg-gray-200 shadow text-gray-700 p-2 mt-2">
+                  <div className="flex gap-2 justify-center">
+                    <span>Text color:</span>
+                    <input
+                      type="color"
+                      name="textLinkColor"
+                      onChange={(ev) => setTextLinkColor(ev.target.value)}
+                      defaultValue={page.textLinkColor}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
           <h2 className="text-2xl font-bold my-4">Informações</h2>
           <div className="p-0">

@@ -1,7 +1,11 @@
 import { faImage, faPalette } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function RadioTogglersBody({ options, defaultValue, onChange }) {
+export default function RadioTogglersTextMenu({
+  options,
+  defaultValue,
+  onChange,
+}) {
   return (
     <div className="radio-togglers shadow">
       {options.map((option) => (

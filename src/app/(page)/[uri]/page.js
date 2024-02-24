@@ -93,6 +93,9 @@ function buttonLink(key, value) {
   return value;
 }
 
+// function copy(value) {
+// }
+
 export default async function UserPage({ params }) {
   const uri = params.uri;
   mongoose.connect(process.env.MONGO_URI);
@@ -103,7 +106,7 @@ export default async function UserPage({ params }) {
     <div
       className="bg-blue-950 text-white min-h-screen"
       style={
-        page.bgTypeBody === 'color'
+        page.typeColor === 'color'
           ? { backgroundColor: page.bgBodyColor }
           : { backgroundImage: `url(${page.bgBodyImage})` }
       }
@@ -130,13 +133,29 @@ export default async function UserPage({ params }) {
       </div>
 
       {/* INFORMAÇÕES DO PERFIL: NOME, LOCALIDADE E DESCRIÇÃO DO CLIENTE */}
-      <h2 className="text-2xl text-center mb-1">{page.displayName}</h2>
-      <h3 className="text-md flex gap-2 justify-center items-center text-white/70">
-        <FontAwesomeIcon className="h-4" icon={faLocationDot} />
-        <span>{page.location}</span>
-      </h3>
-      <div className="max-w-xs mx-auto text-center my-2">
-        <p>{page.bio}</p>
+      <div
+        className=""
+        style={
+          page.typeColor === 'color'
+            ? { color: page.textDescColor }
+            : { color: `#fff` }
+        }
+      >
+        <h2 className="text-2xl text-center mb-1">{page.displayName}</h2>
+        <h3
+          className="text-md flex gap-2 justify-center items-center text-white/70"
+          style={
+            page.typeColor === 'color'
+              ? { color: page.textDescColor }
+              : { color: `#fff` }
+          }
+        >
+          <FontAwesomeIcon className="h-4" icon={faLocationDot} />
+          <span>{page.location}</span>
+        </h3>
+        <div className="max-w-xs mx-auto text-center my-2">
+          <p>{page.bio}</p>
+        </div>
       </div>
 
       {/* IMAGENS E LINKS DAS REDES SOCIAIS */}
@@ -146,6 +165,11 @@ export default async function UserPage({ params }) {
             key={buttonKey}
             href={buttonLink(buttonKey, page.buttons[buttonKey])}
             className="rounded-full bg-zinc-200/70 text-blue-950 p-2 flex items-center justify-center hover:bg-zinc-100 hover:scale-125 duration-500"
+            style={
+              page.typeColor === 'color'
+                ? { color: page.textIconColor }
+                : { color: `#fff` }
+            }
           >
             <FontAwesomeIcon
               className="w-5 h-5"
@@ -157,17 +181,20 @@ export default async function UserPage({ params }) {
 
       {/* BOTÕES DE REDES SOCIAIS */}
       <div className="max-w-2xl mx-auto px-8 flex flex-col gap-2 justify-center mt-4 pb-4">
-        {Object.keys(page.icon).map((buttonKey) => (
+        {Object.keys(page.icon).map((iconKey) => (
           <Link
-            key={buttonKey}
-            href={buttonLink(buttonKey, page.icon[buttonKey])}
-            className="flex flex-row rounded-full bg-transparent border-zinc-200 border-2 text-blue-950 p-2 items-center pl-4 gap-2 hover:bg-zinc-200/40 hover:scale-110 duration-500"
+            key={iconKey}
+            target="_blank"
+            href={buttonLink(iconKey, page.icon[iconKey])}
+            className="flex flex-row rounded-full bg-transparent border-zinc-200 border-2 text-blue-950 p-2 items-center pl-4 gap-2 hover:bg-zinc-200/40 hover:scale-110 duration-500 shadow-xl"
+            style={{
+              color: page.typeColor === 'color' ? page.textMenuColor : '#fff',
+              borderColor:
+                page.typeColor === 'color' ? page.borderMenuColor : '#fff',
+            }}
           >
-            <FontAwesomeIcon
-              className="w-5 h-5"
-              icon={buttonsIcons[buttonKey]}
-            />
-            <p className="font-bold">{buttonLabels[buttonKey]}</p>
+            <FontAwesomeIcon className="w-5 h-5" icon={buttonsIcons[iconKey]} />
+            <p className="font-bold">{buttonLabels[iconKey]}</p>
           </Link>
         ))}
       </div>
@@ -187,9 +214,21 @@ export default async function UserPage({ params }) {
             }
             className="bg-indigo-800 p-2 block flex hover:scale-110 duration-500"
             href={link.url}
+            style={
+              page.typeColor === 'color'
+                ? { backgroundColor: page.bgMainLinkColor }
+                : { backgroundColor: `#fff` }
+            }
           >
             <div className="relative -left-4 overflow-hidden w-16">
-              <div className="w-16 h-16 bg-blue-700 aspect-square relative flex items-center justify-center aspect-square">
+              <div
+                className="w-16 h-16 bg-blue-700 aspect-square relative flex items-center justify-center aspect-square"
+                style={
+                  page.typeColor === 'color'
+                    ? { backgroundColor: page.bgSecLinkColor }
+                    : { backgroundColor: `#fff` }
+                }
+              >
                 {link.icon && (
                   <Image
                     className="w-full h-full object-cover"
@@ -204,11 +243,24 @@ export default async function UserPage({ params }) {
                 )}
               </div>
             </div>
-
-            <div className="flex items-center justify-center shrink grow-0 overflow-hidden">
+            <div
+              className="flex items-center justify-center shrink grow-0 overflow-hidden"
+              style={
+                page.typeColor === 'color'
+                  ? { color: page.textLinkColor }
+                  : { color: `#fff` }
+              }
+            >
               <div>
-                <h3>{link.title}</h3>
-                <p className="text-white/50 h-6 overflow-hidden">
+                <h3 className=" font-bold">{link.title}</h3>
+                <p
+                  className="text-white/50 h-6 overflow-hidden"
+                  style={
+                    page.typeColor === 'color'
+                      ? { color: page.textLinkColor }
+                      : { color: `#fff` }
+                  }
+                >
                   {link.subtitle}
                 </p>
               </div>

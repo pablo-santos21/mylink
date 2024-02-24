@@ -16,9 +16,16 @@ export async function savePageSettings(formData) {
       'bgType',
       'bgColor',
       'bgImage',
-      'bgTypeBody',
+      'typeColor',
       'bgBodyColor',
       'bgBodyImage',
+      'textDescColor',
+      'textMenuColor',
+      'bgMainLinkColor',
+      'bgSecLinkColor',
+      'textLinkColor',
+      'borderMenuColor',
+      'textIconColor',
     ];
 
     const dataToUpdate = {};

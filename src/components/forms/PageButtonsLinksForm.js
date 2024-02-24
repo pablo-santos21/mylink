@@ -102,17 +102,16 @@ function upperFirst(str) {
 
 export default function PageButtonsLinksForm({ user, page }) {
   // const pageSavedButtonsKeys = Object.keys(page.buttons);
-  const pageSavedButtonsKeys =
-    page && page.icones ? Object.keys(page.icones) : [];
+  const pageSavedIconKeys = page && page.icones ? Object.keys(page.icones) : [];
 
-  const pageSavedIconsInfo = pageSavedButtonsKeys.map((k) =>
+  const pageSavedIconsInfo = pageSavedIconKeys.map((k) =>
     allIcons.find((b) => b.key === k),
   );
   const [activeIcons, setActiveIcons] = useState(pageSavedIconsInfo);
 
-  function addButtonToProfile(icon) {
-    setActiveIcons((previcones) => {
-      return [...previcones, icon];
+  function addIconToProfile(icon) {
+    setActiveIcons((prevIcones) => {
+      return [...prevIcones, icon];
     });
   }
 
@@ -122,8 +121,8 @@ export default function PageButtonsLinksForm({ user, page }) {
   }
 
   function removeButton({ key: keyToRemove }) {
-    setActiveIcons((previcones) => {
-      return previcones.filter((icon) => icon.key !== keyToRemove);
+    setActiveIcons((prevIcones) => {
+      return prevIcones.filter((icon) => icon.key !== keyToRemove);
     });
   }
 
@@ -175,7 +174,7 @@ export default function PageButtonsLinksForm({ user, page }) {
             <button
               key={b.key}
               type="button"
-              onClick={() => addButtonToProfile(b)}
+              onClick={() => addIconToProfile(b)}
               className="flex items-center gap-1 p-2 bg-gray-200"
             >
               <FontAwesomeIcon icon={b.icon} />
